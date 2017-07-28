@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	window = SDL_CreateWindow("This is not a window.", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 900, 600, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	if (!window) {
 		std::cerr << "OH MAH GAHD THE SDL WINDOW FAILED TO BE CREATED INTO EXISTENCE :(" << std::endl;
 		std::cin.get();

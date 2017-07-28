@@ -9,5 +9,5 @@ public:
 	virtual void update(Input::Keyboard& keyboard, float dt);
 	virtual void render(SDL_Renderer* renderer);
 private:
-	float spd = 250;
+	float spd = 500;
 };

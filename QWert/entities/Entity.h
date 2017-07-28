@@ -11,6 +11,8 @@ public:
 
 	virtual void update(Input::Keyboard& keyboard, float dt);
 	virtual void render(SDL_Renderer* renderer);
+
+	bool isOnScreen() const;
 protected:
 	Rect rectangle;
 	SDL_Color color;

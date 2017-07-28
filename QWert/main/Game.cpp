@@ -23,5 +23,7 @@ void Game::update(float dt) {
 }
 
 void Game::render(SDL_Renderer* renderer) {
-	player.render(renderer);
+	if (player.isOnScreen()) {
+		player.render(renderer);
+	}
 }

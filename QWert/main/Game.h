@@ -4,6 +4,10 @@
 #include "../input/Input.h"
 #include "../entities/Player.h"
 
+static const char* WINDOW_TITLE = "This is the title of the window";
+static const int WINDOW_WIDTH = 900;
+static const int WINDOW_HEIGHT = 600;
+
 class Game {
 public:
 	Game(bool* running);
