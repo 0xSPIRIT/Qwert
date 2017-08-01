@@ -25,17 +25,18 @@ void Player::update(Input& input, float dt) {
 				rectangle.y = level->tiles[i]->getRectangle().y + rectangle.h;
 				velY = 0;
 			}
-			if (level->tiles[i]->getRectangle().intersects(right)) {
+			else if (level->tiles[i]->getRectangle().intersects(right)) {
 				rectangle.x = level->tiles[i]->getRectangle().x - rectangle.w;
 			}
-			if (level->tiles[i]->getRectangle().intersects(left)) {
+			else if (level->tiles[i]->getRectangle().intersects(left)) {
 				rectangle.x = level->tiles[i]->getRectangle().x + rectangle.w;
 			}
-			if (level->tiles[i]->getRectangle().intersects(down)) {
+			else if (level->tiles[i]->getRectangle().intersects(down)) {
 				rectangle.y = level->tiles[i]->getRectangle().y - rectangle.h;
 				velY = 0;
 				inMidAir = false;
 				jumping = false;
+				pressDown = false;
 			}
 			else {
 				inMidAir = true;
@@ -49,6 +50,10 @@ void Player::update(Input& input, float dt) {
 	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP) || input.isKeyPressed(SDL_SCANCODE_SPACE)) && !jumping) {
 		velY = -1.5;
 		jumping = true;
+	}
+	if ((input.isKeyPressed(SDL_SCANCODE_S) || input.isKeyPressed(SDL_SCANCODE_DOWN)) && !pressDown) {
+		velY += 1.6f;
+		pressDown = true;
 	}
 }
 

@@ -25,6 +25,7 @@ private:
 	bool colliding = false;
 	bool inMidAir = true;
 	bool jumping = false;
+	bool pressDown = false;
 	float velY = 0;
 	
 	Sprite sprite;
