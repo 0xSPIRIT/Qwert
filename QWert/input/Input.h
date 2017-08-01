@@ -2,17 +2,18 @@
 #include <SDL.h>
 #include <iostream>
 
-namespace Input {
-	struct Keyboard {
-		void setEvent(SDL_Event* event) { this->event = event; }
+#include "../maths/vec2.h"
 
-		bool isKeyPressed(const SDL_Scancode& code);
-		bool isKeyReleased(const SDL_Scancode& code);
-		bool pressed = false;
-	private:
-		SDL_Event* event;
-	};
-	struct Mouse {
+struct Input {
+	Input() : pos(0, 0) {};
 
-	};
-}
+	bool isKeyPressed(const SDL_Scancode& code);
+	bool isKeyReleased(const SDL_Scancode& code);
+	bool pressed = false;
+	
+	void setEvent(SDL_Event* event) { this->event = event; }
+	const vec2i& getMousePos();
+private:
+	vec2i pos;
+	SDL_Event* event;
+};

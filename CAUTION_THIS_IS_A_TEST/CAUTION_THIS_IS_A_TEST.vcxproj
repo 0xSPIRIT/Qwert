@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9A2F3921-5D08-4AF0-8437-D83C1EFFBBB6}</ProjectGuid>
+    <ProjectGuid>{AA61EA14-110D-431E-AAE8-CE3685741568}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>QWert</RootNamespace>
+    <RootNamespace>CAUTION_THIS_IS_A_TEST</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -71,8 +71,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Dev\QWert\Dependencies\SDL\include;C:\Dev\QWert\Dependencies\SDL2 Image\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dev\QWert\Dependencies\SDL\lib;C:\Dev\QWert\Dependencies\SDL2 Image\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,13 +89,10 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Dev\QWert\Dependencies\SDL\include;C:\Dev\QWert\Dependencies\SDL2 Image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Dev\QWert\Dependencies\SDL\lib;C:\Dev\QWert\Dependencies\SDL2 Image\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,35 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="maths\vec2.cpp" />
-    <ClCompile Include="entities\Entity.cpp" />
-    <ClCompile Include="entities\Ground.cpp" />
-    <ClCompile Include="entities\Player.cpp" />
-    <ClCompile Include="input\Input.cpp" />
-    <ClCompile Include="level\Level.cpp" />
-    <ClCompile Include="main\Game.cpp" />
-    <ClCompile Include="main\Macros.h" />
-    <ClCompile Include="main\main.cpp" />
-    <ClCompile Include="maths\Rect.cpp" />
-    <ClCompile Include="sprite\Sprite.cpp" />
-    <ClCompile Include="utils\Errors.cpp" />
-    <ClCompile Include="utils\FrameCounter.cpp" />
+    <ClInclude Include="main\List.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="entities\Entity.h" />
-    <ClInclude Include="entities\Ground.h" />
-    <ClInclude Include="entities\Player.h" />
-    <ClInclude Include="entities\Tile.h" />
-    <ClInclude Include="input\Input.h" />
-    <ClInclude Include="level\Level.h" />
-    <ClInclude Include="main\Game.h" />
-    <ClInclude Include="maths\Rect.h" />
-    <ClInclude Include="maths\vec2.h" />
-    <ClInclude Include="utils\Errors.h" />
-    <ClInclude Include="utils\FrameCounter.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="sprite\Sprite.h" />
+    <None Include="main\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

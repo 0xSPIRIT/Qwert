@@ -8,9 +8,11 @@ Entity::Entity(const Rect& rect) : rectangle(rect) {
 
 Entity::~Entity() { }
 
+void Entity::init(SDL_Renderer* renderer) { }
+
 // DEFAULT
 
-void Entity::update(Input::Keyboard& keyboard, float dt) { }
+void Entity::update(Input& input, float dt) { }
 
 void Entity::render(SDL_Renderer* renderer) {
 	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);

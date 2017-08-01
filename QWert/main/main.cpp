@@ -4,7 +4,7 @@
 #include "Game.h"
 #include "../utils/FrameCounter.h"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char** argv) {
 	
 	SDL_Window* window;
 	bool running = true;
@@ -21,16 +21,18 @@ int main(int argc, char* argv[]) {
 		std::cin.get();
 		return 1;
 	}
-
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	Game game(&running);
 	FrameCounter counter;
 
+	game.initRender(renderer);
+
 	while (running) {
 		counter.update(1.f);
 		game.update(counter.dt);
 
+		SDL_SetRenderDrawColor(renderer, 26, 28, 33, 255);
 		SDL_RenderClear(renderer);
 		/////////////////////////
 		game.render(renderer);

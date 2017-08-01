@@ -2,12 +2,14 @@
 #include <iostream>
 #include "../maths/vec2.h"
 
-Game::Game(bool* running) : player(Rect(50, 50, 100, 100)) {
+Game::Game(bool* running) : level("demTexturesYo/levelData/level.lvl") {
 	this->running = running;
 }
 
-Game::~Game() {
+Game::~Game() { }
 
+void Game::initRender(SDL_Renderer* renderer) {
+	level.init(renderer);
 }
 
 void Game::update(float dt) {
@@ -18,12 +20,10 @@ void Game::update(float dt) {
 			break;
 		}
 	}
-	keyboard.setEvent(&event);
-	player.update(keyboard, dt);
+	input.setEvent(&event);
+	level.update(input, dt);
 }
 
 void Game::render(SDL_Renderer* renderer) {
-	if (player.isOnScreen()) {
-		player.render(renderer);
-	}
+	level.render(renderer);
 }
