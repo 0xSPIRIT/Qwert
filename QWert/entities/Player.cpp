@@ -55,11 +55,11 @@ void Player::update(Input& input, float dt) {
 	rectangle.x -= abs(input.isKeyPressed(SDL_SCANCODE_A) + input.isKeyPressed(SDL_SCANCODE_LEFT)) * spd * dt;
 
 	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP) || input.isKeyPressed(SDL_SCANCODE_SPACE)) && !jumping) {
-		velY = -1.8f;
+		velY = 1000 * dt;
 		jumping = true;
 	}
 	if ((input.isKeyPressed(SDL_SCANCODE_S) || input.isKeyPressed(SDL_SCANCODE_DOWN)) && !pressDown) {
-		velY += 1.9f;
+		velY += 1100 * dt;
 		pressDown = true;
 	}
 
@@ -70,7 +70,7 @@ void Player::update(Input& input, float dt) {
 
 	// SETTING UP THE CAMERA'S POSITION
 
-	level->setCameraX(Maths::lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.01f));
+	 level->setCameraX(Maths::lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.01f));
 }
 
 void Player::render(SDL_Renderer* renderer) {

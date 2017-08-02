@@ -57,9 +57,6 @@
     <ClCompile Include="entities\Lava.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entities\textbox\Textbox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main\Game.h">
@@ -99,9 +96,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="entities\Lava.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entities\textbox\Textbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -25,7 +25,7 @@ public:
 	float getOriginalX() const { return originalX; }
 	float getOriginalY() const { return originalY; }
 private:
-	float spd = 500;
+	float spd = 500.f;
 	bool colliding = false;
 	bool inMidAir = true;
 	bool jumping = false;

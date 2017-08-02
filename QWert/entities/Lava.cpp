@@ -14,7 +14,7 @@ void Lava::init(SDL_Renderer* renderer) {
 }
 
 void Lava::update(Input& input, float dt) {
-	if (player->getRectangle().distance(rectangle) < 55) {
+	if (player->getRectangle().distance(rectangle) < 50) {
 		player->getRectangle().setPos(player->getOriginalX(), player->getOriginalY());
 	}
 }

@@ -1,7 +1,6 @@
 #include "Level.h"
 #include "../entities/Player.h"
 #include "../entities/Lava.h"
-#include "../entities/textbox/Textbox.h"
 
 Level::Level(const char* filePath) {
 	std::ifstream file;
@@ -59,7 +58,7 @@ void Level::init(SDL_Renderer* renderer) {
 
 void Level::update(Input& input, float dt) {
 	for (unsigned int i = 0; i < entities.size(); i++) {
-		entities[i]->update(input, dt);
+			entities[i]->update(input, dt);
 	}
 }
 
