@@ -7,6 +7,7 @@
 class Ground : public Tile {
 public:
 	Ground(const Rect& rect);
+	~Ground();
 	
 	virtual void init(SDL_Renderer* renderer);
 

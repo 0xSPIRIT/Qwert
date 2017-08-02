@@ -16,7 +16,11 @@ public:
 	virtual void update(Input& input, float dt);
 	virtual void render(SDL_Renderer* renderer);
 
-	bool isOnScreen() const;
+	float xOffset = 0, yOffset = 0;
+
+	bool isOnScreen(float cameraX, float cameraY) const;
+
+	bool isPlayer = false;
 protected:
 	Rect rectangle;
 	SDL_Color color;
@@ -24,7 +28,7 @@ protected:
 	bool scrollable = true;
 public: // GETTERS AND SETTERS:
 	void setScrollable(bool s) { scrollable = s; }
-	bool getScrollable() { return scrollable; }
+	bool getScrollable() const { return scrollable; }
 
 	void setColor(const SDL_Color& color) { this->color = color; }
 	const SDL_Color& getColor() { return color; }

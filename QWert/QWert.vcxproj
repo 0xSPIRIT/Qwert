@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Dev\QWert\Dependencies\SDL\include;C:\Dev\QWert\Dependencies\SDL2 Image\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dev\QWert\Dependencies\SDL\lib;C:\Dev\QWert\Dependencies\SDL2 Image\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Dev\QWert\Dependencies\SDL\include;C:\Dev\QWert\Dependencies\SDL2 Image\include;C:\Dev\QWert\Dependencies\SDL_ttf\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Dev\QWert\Dependencies\SDL\lib;C:\Dev\QWert\Dependencies\SDL2 Image\lib\x86;C:\Dev\QWert\Dependencies\SDL_ttf\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,13 +91,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Dev\QWert\Dependencies\SDL\include;C:\Dev\QWert\Dependencies\SDL2 Image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Dev\QWert\Dependencies\SDL\include;C:\Dev\QWert\Dependencies\SDL2 Image\include;C:\Dev\QWert\Dependencies\SDL_ttf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Dev\QWert\Dependencies\SDL\lib;C:\Dev\QWert\Dependencies\SDL2 Image\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="entities\Lava.cpp" />
+    <ClCompile Include="entities\textbox\Textbox.cpp" />
     <ClCompile Include="maths\vec2.cpp" />
     <ClCompile Include="entities\Entity.cpp" />
     <ClCompile Include="entities\Ground.cpp" />
@@ -168,11 +170,14 @@
   <ItemGroup>
     <ClInclude Include="entities\Entity.h" />
     <ClInclude Include="entities\Ground.h" />
+    <ClInclude Include="entities\Lava.h" />
     <ClInclude Include="entities\Player.h" />
+    <ClInclude Include="entities\textbox\Textbox.h" />
     <ClInclude Include="entities\Tile.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="level\Level.h" />
     <ClInclude Include="main\Game.h" />
+    <ClInclude Include="maths\Maths.h" />
     <ClInclude Include="maths\Rect.h" />
     <ClInclude Include="maths\vec2.h" />
     <ClInclude Include="utils\Errors.h" />

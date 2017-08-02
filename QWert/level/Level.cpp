@@ -1,5 +1,7 @@
 #include "Level.h"
 #include "../entities/Player.h"
+#include "../entities/Lava.h"
+#include "../entities/textbox/Textbox.h"
 
 Level::Level(const char* filePath) {
 	std::ifstream file;
@@ -14,13 +16,15 @@ Level::Level(const char* filePath) {
 		levelData.push_back(tmp);
 	}
 
+	Player* player = nullptr;
+
 	for (int y = 0; y < levelData.size(); y++) {
 		for (int x = 0; x < levelData[y].size(); x++) {
 			char currentChar = levelData[y][x];
 
 			switch (currentChar) {
 			case '@': {
-				Player* player = new Player(this, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
+				player = new Player(this, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
 				entities.insert(entities.begin(), player);
 				break; 
 			}
@@ -28,6 +32,12 @@ Level::Level(const char* filePath) {
 				Ground* tile = new Ground(Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
 				tiles.push_back(tile);
 				entities.push_back(tile);
+				break;
+			}
+			case '/': {
+				Lava* lava = new Lava(player, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
+				tiles.push_back(lava);
+				entities.push_back(lava);
 				break;
 			}
 			}
@@ -55,7 +65,11 @@ void Level::update(Input& input, float dt) {
 
 void Level::render(SDL_Renderer* renderer) {
 	for (unsigned int i = 0; i < entities.size(); i++) {
-		if (entities[i]->isOnScreen()) {
+		if (entities[i]->getScrollable()) {
+			entities[i]->xOffset = cameraX;
+			entities[i]->yOffset = cameraY;
+		}
+		if (entities[i]->isOnScreen(cameraX, cameraY)) {
 			entities[i]->render(renderer);
 		}
 	}

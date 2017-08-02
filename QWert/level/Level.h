@@ -21,8 +21,16 @@ public:
 
 	void update(Input& input, float dt);
 	void render(SDL_Renderer* renderer);
+
+	float* getCameraX() { return &cameraX; }
+	float* getCameraY() { return &cameraY; }
+
+	void setCameraX(float x) { cameraX = x; }
+	void setCameraY(float y) { cameraY = y; }
 private:
 	std::vector<std::string> levelData;
+
+	float cameraX = 0, cameraY = 0;
 public:
 	std::vector<Tile*> tiles;
 	std::vector<Entity*> entities;
