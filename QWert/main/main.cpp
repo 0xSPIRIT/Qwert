@@ -23,13 +23,13 @@ int main(int argc, char** argv) {
 	}
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-	Game game(&running);
 	FrameCounter counter;
+	Game game(counter, &running);
 
 	game.initRender(renderer);
 
 	while (running) {
-		counter.update(1.f);
+		counter.update();
 		game.update(counter.dt);
 
 		SDL_SetRenderDrawColor(renderer, 26, 28, 33, 255);

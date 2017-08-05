@@ -1,8 +1,9 @@
 #include "Game.h"
 #include <iostream>
 #include "../maths/vec2.h"
+#include "../utils/FrameCounter.h"
 
-Game::Game(bool* running) : level("demTexturesYo/levelData/level.lvl") {
+Game::Game(FrameCounter& counter, bool* running) : level(counter, "demTexturesYo/levelData/level.lvl") {
 	this->running = running;
 }
 
