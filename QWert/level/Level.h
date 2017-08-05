@@ -5,6 +5,8 @@
 #include <fstream>
 #include <vector>
 
+#include "../utils/FrameCounter.h"
+
 #include "../entities/Entity.h"
 #include "../entities/Ground.h"
 
@@ -14,7 +16,7 @@
 
 class Level {
 public:
-	Level(const char* filePath);
+	Level(FrameCounter& counter, const char* filePath);
 	~Level();
 
 	void init(SDL_Renderer* renderer);
@@ -32,6 +34,7 @@ private:
 
 	float cameraX = 0, cameraY = 0;
 public:
+	FrameCounter* counter;
 	std::vector<Tile*> tiles;
 	std::vector<Entity*> entities;
 };

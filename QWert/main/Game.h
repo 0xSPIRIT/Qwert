@@ -11,7 +11,7 @@
 
 class Game {
 public:
-	Game(bool* running);
+	Game(FrameCounter& counter, bool* running);
 	~Game();
 
 	void initRender(SDL_Renderer* renderer);

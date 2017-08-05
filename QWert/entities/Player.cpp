@@ -18,7 +18,7 @@ void Player::update(Input& input, float dt) {
 	rectangle.y += velY;
 
 	if (inMidAir || jumping) {
-		velY += GRAVITY * dt;
+		velY += GRAVITY;
 	}
 
 	up.set((rectangle.x + (rectangle.w / 2) - ((rectangle.w / 2) / 2)), rectangle.y, rectangle.w / 2, rectangle.h / 2);
@@ -51,15 +51,15 @@ void Player::update(Input& input, float dt) {
 		}
 	}
 
-	rectangle.x += abs(input.isKeyPressed(SDL_SCANCODE_D) + input.isKeyPressed(SDL_SCANCODE_RIGHT)) * spd * dt;
-	rectangle.x -= abs(input.isKeyPressed(SDL_SCANCODE_A) + input.isKeyPressed(SDL_SCANCODE_LEFT)) * spd * dt;
+	rectangle.x += absolute(input.isKeyPressed(SDL_SCANCODE_D) + input.isKeyPressed(SDL_SCANCODE_RIGHT)) * spd * dt;
+	rectangle.x -= absolute(input.isKeyPressed(SDL_SCANCODE_A) + input.isKeyPressed(SDL_SCANCODE_LEFT))  * spd * dt;
 
 	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP) || input.isKeyPressed(SDL_SCANCODE_SPACE)) && !jumping) {
-		velY -= 2;
+		velY -= 2.9f;
 		jumping = true;
 	}
 	if ((input.isKeyPressed(SDL_SCANCODE_S) || input.isKeyPressed(SDL_SCANCODE_DOWN)) && !pressDown) {
-		velY += 2.1;
+		velY += 3.f;
 		pressDown = true;
 	}
 
@@ -70,7 +70,7 @@ void Player::update(Input& input, float dt) {
 
 	// SETTING UP THE CAMERA'S POSITION
 
-	 level->setCameraX(Maths::lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.01f));
+	level->setCameraX(lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.01f));
 }
 
 void Player::render(SDL_Renderer* renderer) {

@@ -2,7 +2,9 @@
 #include "../entities/Player.h"
 #include "../entities/Lava.h"
 
-Level::Level(const char* filePath) {
+Level::Level(FrameCounter& counter, const char* filePath) {
+	this->counter = &counter;
+
 	std::ifstream file;
 	file.open(filePath);
 	if (file.fail()) {

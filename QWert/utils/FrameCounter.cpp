@@ -1,16 +1,18 @@
 #include "FrameCounter.h"
+#include <iostream>
 
-void FrameCounter::update(float perSecond) {
+void FrameCounter::update() {
 	currentTime = SDL_GetTicks();
 	dt = (currentTime - lastTime) / 1000;
-	addedTime += dt;
 	lastTime = currentTime;
 
-	if (addedTime < perSecond) {
-		frames++;
+	addedTime += dt;
+
+	if (addedTime < 1) {
+		fps++;
 	} else {
-		std::cout << "Frames Per " << perSecond << " second(s): " << frames << std::endl;
+		std::cout << "FPS: " << fps << std::endl;
+		fps = 0;
 		addedTime = 0;
-		frames = 0;
 	}
 }

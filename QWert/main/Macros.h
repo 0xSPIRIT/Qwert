@@ -8,7 +8,7 @@ static const int WINDOW_HEIGHT = 600;
 
 // PHYSICS MACROS
 
-static const float GRAVITY = 4.f;
+static const float GRAVITY = 0.008f;
 
 // ENTITY MACROS
 
