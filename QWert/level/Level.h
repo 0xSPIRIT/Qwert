@@ -29,6 +29,8 @@ public:
 
 	void setCameraX(float x) { cameraX = x; }
 	void setCameraY(float y) { cameraY = y; }
+
+	void switchLevel(SDL_Renderer* renderer, const char* filePath);
 private:
 	std::vector<std::string> levelData;
 

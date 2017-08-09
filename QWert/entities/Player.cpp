@@ -55,11 +55,11 @@ void Player::update(Input& input, float dt) {
 	rectangle.x -= absolute(input.isKeyPressed(SDL_SCANCODE_A) + input.isKeyPressed(SDL_SCANCODE_LEFT))  * spd * dt;
 
 	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP) || input.isKeyPressed(SDL_SCANCODE_SPACE)) && !jumping) {
-		velY -= 2.9f;
+		velY -= 2.f;
 		jumping = true;
 	}
 	if ((input.isKeyPressed(SDL_SCANCODE_S) || input.isKeyPressed(SDL_SCANCODE_DOWN)) && !pressDown) {
-		velY += 3.f;
+		velY += 2.1f;
 		pressDown = true;
 	}
 

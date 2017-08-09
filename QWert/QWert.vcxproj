@@ -168,6 +168,7 @@
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="maths\Rect.cpp" />
     <ClCompile Include="sprite\Sprite.cpp" />
+    <ClCompile Include="textbox\Textbox.cpp" />
     <ClCompile Include="utils\Errors.cpp" />
     <ClCompile Include="utils\FrameCounter.cpp" />
   </ItemGroup>
@@ -183,10 +184,12 @@
     <ClInclude Include="maths\Maths.h" />
     <ClInclude Include="maths\Rect.h" />
     <ClInclude Include="maths\vec2.h" />
+    <ClInclude Include="textbox\Textbox.h" />
     <ClInclude Include="utils\Errors.h" />
     <ClInclude Include="utils\FrameCounter.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="demTexturesYo\levelData\level2.lvl" />
     <None Include="sprite\Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

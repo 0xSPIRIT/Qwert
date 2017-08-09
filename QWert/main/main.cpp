@@ -30,9 +30,9 @@ int main(int argc, char** argv) {
 
 	while (running) {
 		counter.update();
-		game.update(counter.dt);
-
-		SDL_SetRenderDrawColor(renderer, 26, 28, 33, 255);
+ 		game.update(counter.dt);
+		// TODO: ADD IN PRESET COLOR SCHEMES
+		SDL_SetRenderDrawColor(renderer, 226, 226, 226, 255);
 		SDL_RenderClear(renderer);
 		/////////////////////////
 		game.render(renderer);
