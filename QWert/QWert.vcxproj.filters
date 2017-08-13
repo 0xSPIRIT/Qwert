@@ -60,6 +60,9 @@
     <ClCompile Include="textbox\Textbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="textbox\TextboxBatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main\Game.h">
@@ -104,9 +107,14 @@
     <ClInclude Include="textbox\Textbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="textbox\TextboxBatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main\Variables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sprite\Sprite.h" />
-    <None Include="demTexturesYo\levelData\level2.lvl" />
   </ItemGroup>
 </Project>

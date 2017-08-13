@@ -8,8 +8,8 @@ bool Input::isKeyPressed(const SDL_Scancode& code) {
 	return keystate[code];
 }
 
-bool Input::isKeyReleased(const SDL_Scancode& code) {
-	if (Input::event->type == SDL_KEYUP) {
+bool Input::isKeyReleased(const SDL_Keycode& code) {
+	if (event->type == SDL_KEYUP) {
 		return code == event->key.keysym.sym;
 	}
 	return false;

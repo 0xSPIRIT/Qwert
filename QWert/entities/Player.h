@@ -1,7 +1,8 @@
 #pragma once
+
 #include <SDL_image.h>
 #include "Entity.h"
-#include "../main/Macros.h"
+#include "../main/Variables.h"
 #include "../sprite/Sprite.h"
 #include "../level/Level.h"
 
@@ -24,8 +25,22 @@ public:
 
 	float getOriginalX() const { return originalX; }
 	float getOriginalY() const { return originalY; }
+
+	float getSpd() const { return spd; }
+	float getOriginalSpd() const { return SPD; }
+	void setSpd(float s) { spd = s; }
+
+	float getJumpSpeed() const { return jumpspeed; }
+	float getOriginalJumpSpeed() const { return JUMPSPEED; }
+	void setJumpSpeed(float js) { jumpspeed = js; }
+
+	Level* getLevel() const { return level; }
+	void setLevel(Level* level) { this->level = level; }
 private:
-	float spd = 800.f;
+	const float JUMPSPEED = 2.f;
+	float jumpspeed = JUMPSPEED;
+	const float SPD = 800.f;
+	float spd = SPD;
 	bool colliding = false;
 	bool inMidAir = true;
 	bool jumping = false;

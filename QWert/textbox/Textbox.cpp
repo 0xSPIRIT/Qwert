@@ -13,8 +13,8 @@ void Textbox::init(SDL_Renderer* renderer, const char* message, const Rect& rect
 	if (TTF_Init() < 0) {
 		Errors::FATAL("poo. sdl_ttf has failed to init!");
 	}
-	fs = 12;
-	font = TTF_OpenFont("demTexturesYo/fonts/font.TTF", fs);
+	fs = 8;
+	font = TTF_OpenFont("demTexturesYo/fonts/font.ttf", fs);
 	
 	surface = TTF_RenderText_Solid(font, message, this->outlineColor);
 
@@ -28,7 +28,7 @@ void Textbox::init(SDL_Renderer* renderer, const char* message, const Rect& rect
 void Textbox::update(Input& input, float dt) {
 	if (done) return;
 
-	done = absolute(input.isKeyPressed(SDL_SCANCODE_RETURN) + input.isKeyPressed(SDL_SCANCODE_Z) + input.isKeyPressed(SDL_SCANCODE_Y));
+	done = input.isKeyReleased(KEY_ENTER);
 }
 
 void Textbox::render(SDL_Renderer* renderer) {

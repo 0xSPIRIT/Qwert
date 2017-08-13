@@ -1,5 +1,5 @@
 #include "Level.h"
-#include "../entities/Player.h"
+
 #include "../entities/Lava.h"
 
 Level::Level(FrameCounter& counter, const char* filePath) {
@@ -17,33 +17,7 @@ Level::Level(FrameCounter& counter, const char* filePath) {
 		levelData.push_back(tmp);
 	}
 
-	Player* player = nullptr;
-
-	for (int y = 0; y < levelData.size(); y++) {
-		for (int x = 0; x < levelData[y].size(); x++) {
-			char currentChar = levelData[y][x];
-
-			switch (currentChar) {
-			case '@': {
-				player = new Player(this, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
-				entities.insert(entities.begin(), player);
-				break; 
-			}
-			case '#': {
-				Ground* tile = new Ground(Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
-				tiles.push_back(tile);
-				entities.push_back(tile);
-				break;
-			}
-			case '/': {
-				Lava* lava = new Lava(player, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
-				tiles.push_back(lava);
-				entities.push_back(lava);
-				break;
-			}
-			}
-		}
-	}
+	insertEntities();
 }
 
 Level::~Level() {
@@ -94,6 +68,12 @@ void Level::switchLevel(SDL_Renderer* renderer, const char* filePath) {
 		levelData.push_back(tmp);
 	}
 
+	insertEntities();
+
+	init(renderer);
+}
+
+void Level::insertEntities() {
 	Player* player = nullptr;
 
 	for (int y = 0; y < levelData.size(); y++) {
@@ -102,7 +82,7 @@ void Level::switchLevel(SDL_Renderer* renderer, const char* filePath) {
 
 			switch (currentChar) {
 			case '@': {
-				player = new Player(this, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
+				Player* player = new Player(this, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
 				entities.insert(entities.begin(), player);
 				break;
 			}
@@ -120,9 +100,5 @@ void Level::switchLevel(SDL_Renderer* renderer, const char* filePath) {
 			}
 			}
 		}
-	}
-
-	for (unsigned int i = 0; i < entities.size(); i++) {
-		entities[i]->init(renderer);
 	}
 }

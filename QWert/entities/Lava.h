@@ -3,6 +3,8 @@
 #include "Tile.h"
 #include "Player.h"
 
+#include <vector>
+
 class Lava : public Tile {
 public:
 	Lava(Player* player, const Rect& rect);

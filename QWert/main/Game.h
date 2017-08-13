@@ -7,9 +7,9 @@
 
 #include "../level/Level.h"
 
-#include "../textbox/Textbox.h"
+#include "../textbox/TextboxBatch.h"
 
-#include "Macros.h"
+#include "Variables.h"
 
 class Game {
 public:
@@ -24,7 +24,6 @@ private:
 	bool* running;
 
 	Level level;
-	Textbox* box = new Textbox;
 public:
 	Input input;
 };

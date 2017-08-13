@@ -1,9 +1,7 @@
 #include "Player.h"
 #include "../maths/Maths.h"
 
-Player::~Player() {
-	SDL_DestroyTexture(sprite.getTexture());
-}
+Player::~Player() { SDL_DestroyTexture(sprite.getTexture()); }
 
 void Player::init(SDL_Renderer* renderer) {
 	originalX = rectangle.x;
@@ -11,7 +9,6 @@ void Player::init(SDL_Renderer* renderer) {
 	isPlayer = true;
 	sprite.init(renderer, "demTexturesYo/player/player.png", rectangle);
 }
-
 
 // WARNING: THIS UPDATE CODE IS VERY MESSY!
 void Player::update(Input& input, float dt) {
@@ -55,11 +52,11 @@ void Player::update(Input& input, float dt) {
 	rectangle.x -= absolute(input.isKeyPressed(SDL_SCANCODE_A) + input.isKeyPressed(SDL_SCANCODE_LEFT))  * spd * dt;
 
 	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP) || input.isKeyPressed(SDL_SCANCODE_SPACE)) && !jumping) {
-		velY -= 2.f;
+		velY -= jumpspeed;
 		jumping = true;
 	}
 	if ((input.isKeyPressed(SDL_SCANCODE_S) || input.isKeyPressed(SDL_SCANCODE_DOWN)) && !pressDown) {
-		velY += 2.1f;
+		velY += (jumpspeed != 0) ? jumpspeed + 0.1f : 0;
 		pressDown = true;
 	}
 

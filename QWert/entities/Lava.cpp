@@ -10,11 +10,12 @@ Lava::~Lava() {
 
 void Lava::init(SDL_Renderer* renderer) {
 	sprite.init(renderer, "demTexturesYo/ground/ground.png", rectangle);
-	SDL_SetTextureColorMod(sprite.getTexture(), 200, 5, 5);
+	SDL_SetTextureColorMod(sprite.getTexture(), 150, 5, 5);
 }
 
 void Lava::update(Input& input, float dt) {
-	if (player->getRectangle().distance(rectangle) < 50) {
+	Rect r(rectangle.x - 1, rectangle.y - 1, rectangle.w + 1, rectangle.h + 1);
+	if (player->getRectangle().intersects(r)) {
 		player->getRectangle().setPos(player->getOriginalX(), player->getOriginalY());
 	}
 }

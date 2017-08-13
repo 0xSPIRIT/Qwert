@@ -4,7 +4,6 @@
 
 struct Sprite {
 public:
-	Sprite() {}
 	void init(SDL_Renderer* renderer, const char* filePath, Rect& rect);
 
 	void render(SDL_Renderer* renderer, float xOffset, float yOffset);

@@ -127,6 +127,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Dev\QWert\Dependencies\SDL\include;C:\Dev\QWert\Dependencies\SDL2 Image\include;C:\Dev\QWert\Dependencies\SDL_ttf\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,6 +170,7 @@
     <ClCompile Include="maths\Rect.cpp" />
     <ClCompile Include="sprite\Sprite.cpp" />
     <ClCompile Include="textbox\Textbox.cpp" />
+    <ClCompile Include="textbox\TextboxBatch.cpp" />
     <ClCompile Include="utils\Errors.cpp" />
     <ClCompile Include="utils\FrameCounter.cpp" />
   </ItemGroup>
@@ -181,15 +183,16 @@
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="level\Level.h" />
     <ClInclude Include="main\Game.h" />
+    <ClInclude Include="main\Variables.h" />
     <ClInclude Include="maths\Maths.h" />
     <ClInclude Include="maths\Rect.h" />
     <ClInclude Include="maths\vec2.h" />
     <ClInclude Include="textbox\Textbox.h" />
+    <ClInclude Include="textbox\TextboxBatch.h" />
     <ClInclude Include="utils\Errors.h" />
     <ClInclude Include="utils\FrameCounter.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="demTexturesYo\levelData\level2.lvl" />
     <None Include="sprite\Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

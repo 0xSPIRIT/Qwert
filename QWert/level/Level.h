@@ -12,7 +12,7 @@
 
 #include "../utils/Errors.h"
 
-#include "../main/Macros.h"
+#include "../main/Variables.h"
 
 class Level {
 public:
@@ -31,12 +31,14 @@ public:
 	void setCameraY(float y) { cameraY = y; }
 
 	void switchLevel(SDL_Renderer* renderer, const char* filePath);
-private:
-	std::vector<std::string> levelData;
 
+	void insertEntities();
+private:
 	float cameraX = 0, cameraY = 0;
+	std::vector<std::string> levelData;
 public:
 	FrameCounter* counter;
+
 	std::vector<Tile*> tiles;
 	std::vector<Entity*> entities;
 };
