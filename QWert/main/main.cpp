@@ -6,20 +6,23 @@
 
 int main(int argc, char** argv) {
 	
+	std::cout << __cplusplus << std::endl;
+
 	SDL_Window* window;
 	bool running = true;
+	
 
 	if (SDL_Init(SDL_INIT_VIDEO)) {
 		std::cerr << "OH MAH GAHD SDL FAILLED TO INIT!" << std::endl;
 		std::cin.get();
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	if (!window) {
 		std::cerr << "OH MAH GAHD THE SDL WINDOW FAILED TO BE CREATED INTO EXISTENCE :(" << std::endl;
 		std::cin.get();
-		return 1;
+		return EXIT_FAILURE;
 	}
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
@@ -32,7 +35,7 @@ int main(int argc, char** argv) {
 		counter.update();
  		game.update(counter.dt);
 		// TODO: ADD IN PRESET COLOR SCHEMES
-		SDL_SetRenderDrawColor(renderer, 226, 226, 226, 255);
+		SDL_SetRenderDrawColor(renderer, 245, 245, 245, 255);
 		SDL_RenderClear(renderer);
 		/////////////////////////
 		game.render(renderer);
@@ -44,5 +47,5 @@ int main(int argc, char** argv) {
 
 	SDL_Quit();
 
-	return 0;
+	return EXIT_SUCCESS;
 }

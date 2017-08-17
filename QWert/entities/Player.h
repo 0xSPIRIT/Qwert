@@ -5,6 +5,7 @@
 #include "../main/Variables.h"
 #include "../sprite/Sprite.h"
 #include "../level/Level.h"
+#include "../maths/vec2.h"
 
 class Player : public Entity {
 public:
@@ -37,15 +38,20 @@ public:
 	Level* getLevel() const { return level; }
 	void setLevel(Level* level) { this->level = level; }
 private:
-	const float JUMPSPEED = 2.f;
-	float jumpspeed = JUMPSPEED;
-	const float SPD = 800.f;
-	float spd = SPD;
-	bool colliding = false;
-	bool inMidAir = true;
-	bool jumping = false;
-	bool pressDown = false;
-	float velY = 0;
+	float JUMPSPEED;
+	float jumpspeed;
+	float SPD;
+	float spd;
+	bool colliding;
+	bool inMidAir;
+	bool jumping;
+	bool pressDown;
+
+	bool pressingLeft;
+	bool teleportPower;
+	int time;
+
+	vec2 vel;
 
 	float originalX, originalY;
 	

@@ -30,11 +30,19 @@ public:
 	void setCameraX(float x) { cameraX = x; }
 	void setCameraY(float y) { cameraY = y; }
 
+	int getWidth() const;
+	int getHeight() const;
+
 	void switchLevel(SDL_Renderer* renderer, const char* filePath);
 
 	void insertEntities();
 private:
 	float cameraX = 0, cameraY = 0;
+
+	std::vector<int> width;
+	int fWidth;
+	int height;
+
 	std::vector<std::string> levelData;
 public:
 	FrameCounter* counter;

@@ -15,7 +15,11 @@ bool Input::isKeyReleased(const SDL_Keycode& code) {
 	return false;
 }
 
-const vec2i& Input::getMousePos() {
+bool Input::isMousePressed(int button) {
+	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(button));
+}
+
+const vec2& Input::getMousePos() {
 	SDL_GetMouseState(&pos.x, &pos.y);
-	return pos;
+	return vec2(pos.x, pos.y);
 }

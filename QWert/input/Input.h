@@ -4,15 +4,22 @@
 
 #include "../maths/vec2.h"
 
+#define MOUSE_LEFT 1
+#define MOUSE_MIDDLE 2
+#define MOUSE_RIGHT 3
+
 struct Input {
 	Input() : pos(0, 0) {};
 
 	bool isKeyPressed(const SDL_Scancode& code);
 	bool isKeyReleased(const SDL_Keycode& code);
 	bool pressed = false;
-	
+
+	bool isMousePressed(int button);
+
 	void setEvent(SDL_Event* event) { this->event = event; }
-	const vec2i& getMousePos();
+
+	const vec2& getMousePos();
 private:
 	vec2i pos;
 	SDL_Event* event;

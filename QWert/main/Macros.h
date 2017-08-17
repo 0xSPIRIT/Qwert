@@ -2,14 +2,15 @@
 
 // WINDOW MACROS
 
-static const char* WINDOW_TITLE = "This is the title of the window";
-static const int WINDOW_WIDTH = 900;
-static const int WINDOW_HEIGHT = 600;
+#define WINDOW_WIDTH 900
+#define WINDOW_HEIGHT 600
+#define WINDOW_TITLE "This is the title of the window"
 
 // PYSICS MACROS
 
-static const float DEFAULT_GRAVITY = 0.008f;
+#define DEFAULT_GRAVITY 0.008f;
+#define AIR_RESISTANCE 0.005f;
 
 // ENTITY MACROS
 
-static const int DEFAULT_TILE_SIZE = 48;
+#define DEFAULT_TILE_SIZE 48;

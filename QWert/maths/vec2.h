@@ -3,6 +3,7 @@
 
 struct vec2 {
 	vec2(float X, float Y) : x(X), y(Y) {}
+	vec2() { x = 0; y = 0; }
 
 	vec2& Add(const vec2& other);
 	vec2& Subtract(const vec2& other);

@@ -50,6 +50,14 @@ void Level::render(SDL_Renderer* renderer) {
 	}
 }
 
+int Level::getWidth() const {
+	return fWidth * DEFAULT_TILE_SIZE;
+}
+
+int Level::getHeight() const {
+	return height * DEFAULT_TILE_SIZE;
+}
+
 void Level::switchLevel(SDL_Renderer* renderer, const char* filePath) {
 	levelData.clear();
 	
@@ -75,9 +83,12 @@ void Level::switchLevel(SDL_Renderer* renderer, const char* filePath) {
 
 void Level::insertEntities() {
 	Player* player = nullptr;
-
+	
 	for (int y = 0; y < levelData.size(); y++) {
+		height = levelData.size();
 		for (int x = 0; x < levelData[y].size(); x++) {
+			width.push_back(levelData[y].size());
+			
 			char currentChar = levelData[y][x];
 
 			switch (currentChar) {
@@ -99,6 +110,15 @@ void Level::insertEntities() {
 				break;
 			}
 			}
+		}
+	}
+
+	// For finding out the width of the level
+	for (unsigned int i = 0; i < width.size(); i++) {
+		if (i == 0) {
+			fWidth = 0;
+		} else if (width[i] > fWidth) {
+			fWidth = width[i];
 		}
 	}
 }
