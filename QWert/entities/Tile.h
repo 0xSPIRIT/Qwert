@@ -10,4 +10,4 @@ public:
 
 	virtual void update(Input input, float dt) {}
 	virtual void render(SDL_Renderer* renderer) {}
-};
+};	

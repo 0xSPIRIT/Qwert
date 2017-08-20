@@ -32,7 +32,7 @@ void Player::init(SDL_Renderer* renderer) {
 void Player::update(Input& input, float dt) {
 	rectangle.y += vel.y;
 	rectangle.x += vel.x;
-	
+
 	// Collisions
 	{
 		if (inMidAir || jumping) {

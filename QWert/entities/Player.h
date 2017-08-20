@@ -9,7 +9,7 @@
 
 class Player : public Entity {
 public:
-	Player(Level* lvl, const Rect& rect) : level(lvl), Entity(rect), 
+	Player(Level* lvl, const Rect& rect) : level(lvl), Entity(rect),
 		up((rectangle.x + (rectangle.w / 2) - ((rectangle.w / 2) / 2)), rectangle.y, rectangle.w / 2, rectangle.h / 2),
 		right((rectangle.x + rectangle.w - 5), rectangle.y + 5, 5, rectangle.h - 10),
 		left(rectangle.x, rectangle.y + 5, 5, rectangle.h - 10),
@@ -54,7 +54,7 @@ private:
 	vec2 vel;
 
 	float originalX, originalY;
-	
+
 	Sprite sprite;
 	Level* level;
 

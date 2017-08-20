@@ -6,8 +6,6 @@
 
 int main(int argc, char** argv) {
 	
-	std::cout << __cplusplus << std::endl;
-
 	SDL_Window* window;
 	bool running = true;
 	

@@ -13,4 +13,4 @@
 
 // ENTITY MACROS
 
-#define DEFAULT_TILE_SIZE 48;
+static const int DEFAULT_TILE_SIZE = 48;
