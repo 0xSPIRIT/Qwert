@@ -10,10 +10,10 @@
 class Player : public Entity {
 public:
 	Player(Level* lvl, const Rect& rect) : level(lvl), Entity(rect),
-		up((rectangle.x + (rectangle.w / 2) - ((rectangle.w / 2) / 2)), rectangle.y, rectangle.w / 2, rectangle.h / 2),
-		right((rectangle.x + rectangle.w - 5), rectangle.y + 5, 5, rectangle.h - 10),
-		left(rectangle.x, rectangle.y + 5, 5, rectangle.h - 10),
-		down((rectangle.x + (rectangle.w / 2) - ((rectangle.w / 2) / 2)), (rectangle.y + (rectangle.h / 2)), rectangle.w / 2, rectangle.h / 2) { }
+		up((rectangle.x + (rectangle.w / 2) - 1), rectangle.y, 2, rectangle.h / 2),
+		right((rectangle.x + rectangle.w - 20), rectangle.y + 5, 20, rectangle.h - 10),
+		left(rectangle.x, rectangle.y + 5, 20, rectangle.h - 10),
+		down((rectangle.x + (rectangle.w / 2) - 1), (rectangle.y + (rectangle.h / 2)), 2, rectangle.h / 2) { }
 	~Player();
 
 	virtual void init(SDL_Renderer* renderer);
@@ -46,10 +46,6 @@ private:
 	bool inMidAir;
 	bool jumping;
 	bool pressDown;
-
-	bool pressingLeft;
-	bool teleportPower;
-	int time;
 
 	vec2 vel;
 

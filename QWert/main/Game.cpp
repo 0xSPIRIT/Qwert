@@ -21,7 +21,9 @@ void Game::update(float dt) {
 			break;
 		}
 	}
+	
 	input.setEvent(&event);
+	
 	level.update(input, dt);
 }
 

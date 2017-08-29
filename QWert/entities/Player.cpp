@@ -19,12 +19,6 @@ void Player::init(SDL_Renderer* renderer) {
 	JUMPSPEED = 2.f;
 	jumpspeed = JUMPSPEED;
 
-	// Powerups
-	teleportPower = true;
-	pressingLeft = false;
-
-	time = 0; // A time variable for whenever I need it
-
 	sprite.init(renderer, "demTexturesYo/player/player.png", rectangle);
 }
 
@@ -39,10 +33,10 @@ void Player::update(Input& input, float dt) {
 			vel.y += GRAVITY;
 		}
 
-		up.set((rectangle.x + (rectangle.w / 2) - ((rectangle.w / 2) / 2)), rectangle.y, rectangle.w / 2, rectangle.h / 2);
-		right.set((rectangle.x + rectangle.w - 5), rectangle.y + 5, 5, rectangle.h - 10);
-		left.set(rectangle.x, rectangle.y + 5, 5, rectangle.h - 10);
-		down.set((rectangle.x + (rectangle.w / 2) - ((rectangle.w / 2) / 2)), (rectangle.y + (rectangle.h / 2)), rectangle.w / 2, rectangle.h / 2);
+		up.set((rectangle.x + (rectangle.w / 2) - 1), rectangle.y, 2, rectangle.h / 2);
+		right.set((rectangle.x + rectangle.w - 20), rectangle.y + 5, 20, rectangle.h - 10);
+		left.set(rectangle.x, rectangle.y + 5, 20, rectangle.h - 10);
+		down.set((rectangle.x + (rectangle.w / 2) - 1), (rectangle.y + (rectangle.h / 2)), 2, rectangle.h / 2);
 
 		for (unsigned int i = 0; i < level->tiles.size(); i++) {
 			if (level->tiles[i]->getRectangle().distance(rectangle) < 100) {
@@ -73,11 +67,21 @@ void Player::update(Input& input, float dt) {
 	}
 
 	if (input.isKeyPressed(SDL_SCANCODE_D) || input.isKeyPressed(SDL_SCANCODE_RIGHT)) {
-		rectangle.x += spd * dt;
+		if ((rectangle.x + dt * spd) - rectangle.x > 1) {
+			rectangle.x += 1;
+		}
+		else {
+			rectangle.x += dt * spd;
+		}
 		vel.x = 0;
 	}
 	if (input.isKeyPressed(SDL_SCANCODE_A) || input.isKeyPressed(SDL_SCANCODE_LEFT)) {
-		rectangle.x -= spd * dt;
+		if (rectangle.x - (rectangle.x - dt * spd) > 1) {
+			rectangle.x -= 1;
+		}
+		else {
+			rectangle.x -= dt * spd;
+		}		
 		vel.x = 0;
 	}
 
@@ -95,28 +99,33 @@ void Player::update(Input& input, float dt) {
 		rectangle.y = originalY;
 	}
 
-	// Teleportation
-
-	if (teleportPower) {
-		if (!input.isMousePressed(MOUSE_LEFT)) {
-			pressingLeft = false;
-		}
-		if (input.isMousePressed(MOUSE_LEFT) && !pressingLeft) {
-			rectangle.setPos(input.getMousePos().x + xOffset, input.getMousePos().y + yOffset);
-			vel.x = 0;
-			vel.y = 0;
-			pressingLeft = true;
-			inMidAir = true;
-		}
+	if (input.isKeyPressed(SDL_SCANCODE_LEFTBRACKET)) {
+		DEBUG = false;
+	}
+	if (input.isKeyPressed(SDL_SCANCODE_RIGHTBRACKET)) {
+		DEBUG = true;
 	}
 
 	// SETTING UP THE CAMERA'S POSITION
 
-	if (!pressingLeft || pressingLeft) {
-		level->setCameraX(clamp(lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.01f), 0, level->getWidth() - WINDOW_WIDTH));
-	}
+	level->setCameraX(clamp(lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.01f), 0, level->getWidth() - WINDOW_WIDTH));
 }
 
 void Player::render(SDL_Renderer* renderer) {
 	sprite.render(renderer, xOffset, yOffset);
+
+	if (DEBUG) {
+		SDL_SetRenderDrawColor(renderer, 200, 0, 0, 255);
+
+		SDL_Rect u = {up.x - xOffset, up.y - yOffset, up.w, up.h};
+		SDL_RenderDrawRect(renderer, &u);
+		SDL_Rect d = { down.x - xOffset, down.y - yOffset, down.w, down.h };
+		SDL_RenderDrawRect(renderer, &d);
+		SDL_Rect l = { left.x - xOffset, left.y - yOffset, left.w, left.h };
+		SDL_RenderDrawRect(renderer, &l);
+		SDL_Rect r = { right.x - xOffset, right.y - yOffset, right.w, right.h };
+		SDL_RenderDrawRect(renderer, &r);
+
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	}
 }

@@ -26,7 +26,7 @@ bool Rect::intersects(Rect& other) {
 	return (x + w > other.x && x < other.x + other.w) && (y < other.y + other.h && y + h > other.y);
 }
 
-bool Rect::intersects(vec2& point) {
+bool Rect::intersects(const vec2& point) {
 	return (point.x >= x) && (point.y <= x + w) && (point.y >= y) && (point.y <= y + h);
 }
 

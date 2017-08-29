@@ -7,6 +7,15 @@ void FrameCounter::update() {
 	lastTime = currentTime;
 
 	addedTime += dt;
+	anotherAddedTime += dt;
+
+	addedDT += dt;
+	counterDT++;
+
+	if (anotherAddedTime > 10) {
+		anotherAddedTime = 0;
+		avgDT = addedDT / counterDT;
+	}
 
 	if (addedTime < 1) {
 		fps++;

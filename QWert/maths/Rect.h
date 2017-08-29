@@ -10,7 +10,7 @@ struct Rect {
 	void set(float x, float y, float w, float h);
 	SDL_Rect& toSDLRect();
 	bool intersects(Rect& other);
-	bool intersects(vec2& point);
+	bool intersects(const vec2& point);
 	float distance(Rect& other);
 
 	vec2& getPos() { return vec2(x, y); }

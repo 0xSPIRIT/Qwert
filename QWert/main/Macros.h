@@ -13,4 +13,6 @@
 
 // ENTITY MACROS
 
+// i know this is not a macro but im too lazy to move this into Variables.h well, thinking about it I could've
+// moved the variable in the time i wrote this :P waddayagonnadoaboudit
 static const int DEFAULT_TILE_SIZE = 48;
