@@ -1,0 +1,23 @@
+Monday 28th August, 2017
+New commit: 16 on https://github.com/CorkScrewer/QWert
+11:00 PM
+
+LOG #1
+======
+
+This is the first in a set of many game dev logs on my game
+'QWert'. The name would most likely be renamed later on.
+
+I've recently commited a new fix for the movement of the player.
+Before, if your fps is low (dt), then the movement would be choppy and would allow you to clip through walls.
+
+I fixed this issue by asking if the difference of movement between two frames are too large, then cap off the speed to a lower value. This has massively helped for lower-end machines like mine.
+
+Another big problem I've encountered is that on higher-end machines, the jumping seems to be a noticable amount faster than on a slow machine. This is because since the higher-end machines
+are running a lot more frames per second, there would be a higher number of gravity calculations per second. To fix this issue, my theory is to multiply the gravity by a deltatime, but even that seems to be not fixing the problem. Or maybe I'm just doing it wrong.
+
+==========
+END LOG #1
+
+wow i just realized how serious this seems.
+welp, <insert fart joke here>

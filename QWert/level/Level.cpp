@@ -1,6 +1,7 @@
 #include "Level.h"
 
 #include "../entities/Lava.h"
+#include "../entities/Box.h"
 
 Level::Level(FrameCounter& counter, const char* filePath) {
 	this->counter = &counter;
@@ -107,6 +108,11 @@ void Level::insertEntities() {
 				Lava* lava = new Lava(player, Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE));
 				tiles.push_back(lava);
 				entities.push_back(lava);
+				break;
+			}
+			case 'B': {
+				Box* box = new Box(Rect(x * DEFAULT_TILE_SIZE, y * DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE), &entities, &tiles);
+				entities.push_back(box);
 				break;
 			}
 			}

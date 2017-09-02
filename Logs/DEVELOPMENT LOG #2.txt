@@ -1,0 +1,19 @@
+Tuesday 29th August, 2017
+Latest Commit: 16 on https://github.com/CorkScrewer/QWert
+12:38 PM
+
+LOG #2
+======
+
+I am planning to write the base code for the puzzle mechanic
+today.
+
+The idea is that, since I can't make an entity that when pressed, creates a new player object, I will just make the levels have the player objects already instantiated in the .lvl file. For the puzzles itself, there would be a single door per level, except that different .lvl files would be classified as one level, since I can't have more than one door per .lvl file.
+
+First thing TODO: Make so that when you go back into another level, the second instance of the player is exactly where you left them.
+
+==========
+END LOG #2
+
+alright lets get to work! The aftermath of the code would be
+explained in LOG #3.

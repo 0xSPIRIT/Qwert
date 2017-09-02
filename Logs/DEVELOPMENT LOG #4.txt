@@ -1,0 +1,12 @@
+Saturday 2nd September, 2017
+Latest Commit: 16 on https://github.com/CorkScrewer/QWert
+3:26 PM
+
+LOG #4
+======
+
+Ok, so the player movement is going to be reset to the original, because I am sick and tired of it. It might be laggy on my computer but at least it's consistent on normal / faster computers.
+
+I am trying the puzzle mechanic where you have boxes and pressure plates but one door per .lvl file. (because multiple .lvl files can also be a part of one large puzzle).
+
+I'll work on the box physics for today.

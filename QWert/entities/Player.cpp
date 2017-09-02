@@ -13,7 +13,7 @@ void Player::init(SDL_Renderer* renderer) {
 	jumping = false;
 	pressDown = false;
 
-	SPD = 800.f; // This is the speed that is going to be constant.
+	SPD = 550.f; // This is the speed that is going to be constant.
 	spd = SPD;
 
 	JUMPSPEED = 2.f;
@@ -25,8 +25,7 @@ void Player::init(SDL_Renderer* renderer) {
 // WARNING: THIS UPDATE CODE IS VERY MESSY!
 void Player::update(Input& input, float dt) {
 	rectangle.y += vel.y;
-	rectangle.x += vel.x;
-
+	
 	// Collisions
 	{
 		if (inMidAir || jumping) {
@@ -67,21 +66,14 @@ void Player::update(Input& input, float dt) {
 	}
 
 	if (input.isKeyPressed(SDL_SCANCODE_D) || input.isKeyPressed(SDL_SCANCODE_RIGHT)) {
-		if ((rectangle.x + dt * spd) - rectangle.x > 1) {
-			rectangle.x += 1;
-		}
-		else {
-			rectangle.x += dt * spd;
-		}
-		vel.x = 0;
+		rectangle.x += dt * spd;
+		vel.x = dt * spd;
 	}
-	if (input.isKeyPressed(SDL_SCANCODE_A) || input.isKeyPressed(SDL_SCANCODE_LEFT)) {
-		if (rectangle.x - (rectangle.x - dt * spd) > 1) {
-			rectangle.x -= 1;
-		}
-		else {
-			rectangle.x -= dt * spd;
-		}		
+	else if (input.isKeyPressed(SDL_SCANCODE_A) || input.isKeyPressed(SDL_SCANCODE_LEFT)) {
+		rectangle.x -= dt * spd;
+		vel.x = dt * -spd;
+	}
+	else {
 		vel.x = 0;
 	}
 

@@ -9,7 +9,8 @@
 // PYSICS MACROS
 
 #define DEFAULT_GRAVITY 0.008f;
-#define AIR_RESISTANCE 0.005f;
+static const float AIR_RESISTANCE = 0.999f;
+static const float FLOOR_FRICTION = 0.993f;
 
 // ENTITY MACROS
 

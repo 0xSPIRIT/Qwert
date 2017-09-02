@@ -23,7 +23,7 @@ void Game::update(float dt) {
 	}
 	
 	input.setEvent(&event);
-	
+
 	level.update(input, dt);
 }
 

@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="entities\Box.cpp" />
     <ClCompile Include="entities\Lava.cpp" />
     <ClCompile Include="maths\vec2.cpp" />
     <ClCompile Include="entities\Entity.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="utils\FrameCounter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="entities\Box.h" />
     <ClInclude Include="entities\Entity.h" />
     <ClInclude Include="entities\Ground.h" />
     <ClInclude Include="entities\Lava.h" />

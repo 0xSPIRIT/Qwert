@@ -1,0 +1,17 @@
+Tuesday 29th August, 2017
+Latest Commit: 16 on https://github.com/CorkScrewer/QWert
+1:30 PM
+
+LOG #3
+======
+
+The Puzzle Mechanic idea didn't work-- I had to git reset.
+
+So im back to the drawing board with the puzzle mechanic ideas.
+I'm going to use the whiteboard to test out some ideas.
+
+Hopefully I get a simple but effective puzzle mechanic. The rest of this dev log would be me after I get or not get an idea from brainstorming.
+
+ADDITION: I'm going to watch some minecraft videos because the puzzles from some maps are actually pretty interesting, but most of them have to use some kind of electronic system. (I still might use that though.)
+
+======

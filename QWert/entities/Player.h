@@ -31,6 +31,9 @@ public:
 	float getOriginalSpd() const { return SPD; }
 	void setSpd(float s) { spd = s; }
 
+	const vec2& getVel() const { return vel; }
+	void setVel(const vec2& vel) { this->vel = vel; }
+
 	float getJumpSpeed() const { return jumpspeed; }
 	float getOriginalJumpSpeed() const { return JUMPSPEED; }
 	void setJumpSpeed(float js) { jumpspeed = js; }
