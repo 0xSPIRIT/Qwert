@@ -50,6 +50,11 @@ private:
 	bool jumping;
 	bool pressDown;
 
+	float addedTime;
+
+	float intervalTimeForGravity;
+	bool intervalBoolForGravity;
+
 	vec2 vel;
 
 	float originalX, originalY;

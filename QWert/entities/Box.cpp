@@ -20,6 +20,7 @@ void Box::init(SDL_Renderer* renderer) {
 
 void Box::update(Input& input, float dt) {
 	addedTime += dt;
+	intervalTimeForGravity += dt;
 
 	rectangle.x += vel.x;
 	rectangle.y += vel.y;
@@ -36,8 +37,16 @@ void Box::update(Input& input, float dt) {
 		for (unsigned int i = 0; i < tiles->size(); i++) {
 			if (tiles->at(i)->getRectangle().distance(rectangle) < 100) {
 				if (tiles->at(i)->getRectangle().intersects(up)) {
-					rectangle.y = tiles->at(i)->getRectangle().y + rectangle.h;
-					vel.y = 0;
+					if (input.GRAVITY_DIRECTION == Direction::Down) {
+						rectangle.y = tiles->at(i)->getRectangle().y + rectangle.h;
+						vel.y = 0;
+					}
+					if (input.GRAVITY_DIRECTION == Direction::Up) {
+						rectangle.y = tiles->at(i)->getRectangle().y + rectangle.h;
+						vel.y = 0;
+						vel.x *= 1 - (FLOOR_FRICTION * dt); // This is actually phisx doe
+						inMidAir = false;
+					}
 				}
 				else if (tiles->at(i)->getRectangle().intersects(right)) {
 					rectangle.x = tiles->at(i)->getRectangle().x - rectangle.w;
@@ -48,10 +57,16 @@ void Box::update(Input& input, float dt) {
 					vel.x = 0;
 				}
 				else if (tiles->at(i)->getRectangle().intersects(down)) {
-					rectangle.y = tiles->at(i)->getRectangle().y - rectangle.h;
-					vel.y = 0;
-					vel.x *= 1 - (FLOOR_FRICTION * dt); // This is actually phisx doe
-					inMidAir = false;
+					if (input.GRAVITY_DIRECTION == Direction::Down) {
+						rectangle.y = tiles->at(i)->getRectangle().y - rectangle.h;
+						vel.y = 0;
+						vel.x *= 1 - (FLOOR_FRICTION * dt); // This is actually phisx doe
+						inMidAir = false;
+					}
+					if (input.GRAVITY_DIRECTION == Direction::Up) {
+						rectangle.y = tiles->at(i)->getRectangle().y - rectangle.h;
+						vel.y = 0;
+					}
 				}
 				else {
 					inMidAir = true;
@@ -65,7 +80,12 @@ void Box::update(Input& input, float dt) {
 		vel.x *= 1 - (AIR_RESISTANCE * dt);
 
 		if (inMidAir && !pickedUp) {
-			vel.y += GRAVITY;
+			if (input.GRAVITY_DIRECTION == Direction::Down) {
+				vel.y += GRAVITY * dt;
+			}
+			if (input.GRAVITY_DIRECTION == Direction::Up) {
+				vel.y -= GRAVITY * dt;
+			}
 		}
 
 		if (col && input.isKeyPressed(SDL_SCANCODE_RETURN) && !previouslyPressedEnter) {
@@ -90,8 +110,8 @@ void Box::update(Input& input, float dt) {
 		}
 
 		if (pickedUp) {
-			rectangle.x = player->getRectangle().x;
-			rectangle.y = player->getRectangle().y - rectangle.h + 5; // +5 is to make sure that they are always colliding
+			rectangle.x = player->getRectangle().x + rectangle.w - 2; // -2 is to make sure that they are always colliding
+			rectangle.y = player->getRectangle().y;
 		}
 	}
 

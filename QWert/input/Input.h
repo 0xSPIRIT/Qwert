@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../maths/vec2.h"
+#include "../main/Variables.h"
 
 #define MOUSE_LEFT 1
 #define MOUSE_MIDDLE 2
@@ -20,9 +21,12 @@ struct Input {
 	void setEvent(SDL_Event* event) { this->event = event; }
 
 	const vec2& getMousePos();
+
+	Direction GRAVITY_DIRECTION = Direction::Down;
 private:
 	vec2i pos;
 	SDL_Event* event;
+
 };
 
 enum Keys {

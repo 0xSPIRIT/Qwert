@@ -1,0 +1,14 @@
+Saturday 2nd September, 2017
+Latest Commit: 17 on https://github.com/CorkScrewer/QWert
+4:46 PM
+
+LOG #5
+======
+
+The box and the box physics (PHYSX BREH) has been implemented. There is no glitches at all that I have seen.
+
+Tomorrow, probably, if I am in the mood, I will begin the pressure plate stuff. Today was the fun physics stuff :)
+
+======
+
+Wow this was a short log. I should've made this before I committed and pushed to github. eh; wateva.

@@ -1,0 +1,12 @@
+Thursday 2nd September, 2017
+Latest Commit: 18 on https://github.com/CorkScrewer/QWert
+8:09 PM
+
+LOG #6
+======
+
+I have removed the feature to jump and instead opted for a new way for gravity. When you press the up button or the down button, it swtiches gravity. eg. you press up, then everything affected by gravity switches, causing them to be on the ceiling.
+
+I have fully implemented this in liek, half an hour soo props to me :)
+
+======

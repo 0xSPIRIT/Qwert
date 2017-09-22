@@ -16,6 +16,9 @@ void Player::init(SDL_Renderer* renderer) {
 	SPD = 550.f; // This is the speed that is going to be constant.
 	spd = SPD;
 
+	intervalTimeForGravity = 0;
+	intervalBoolForGravity = false;
+
 	JUMPSPEED = 2.f;
 	jumpspeed = JUMPSPEED;
 
@@ -25,11 +28,33 @@ void Player::init(SDL_Renderer* renderer) {
 // WARNING: THIS UPDATE CODE IS VERY MESSY!
 void Player::update(Input& input, float dt) {
 	rectangle.y += vel.y;
+
+	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP)) && !intervalBoolForGravity) {
+		input.GRAVITY_DIRECTION = Direction::Up;
+		intervalBoolForGravity = true;
+	}
+
+	if ((input.isKeyPressed(SDL_SCANCODE_S) || input.isKeyPressed(SDL_SCANCODE_DOWN)) && !intervalBoolForGravity) {
+		input.GRAVITY_DIRECTION = Direction::Down;
+		intervalBoolForGravity = true;
+	}
+
+	intervalTimeForGravity += dt;
+
+	if (intervalTimeForGravity > 0.1f) {
+		intervalTimeForGravity = 0.f;
+		intervalBoolForGravity = false;
+	}
 	
 	// Collisions
 	{
 		if (inMidAir || jumping) {
-			vel.y += GRAVITY;
+			if (input.GRAVITY_DIRECTION == Direction::Down) {
+				vel.y += GRAVITY * dt;
+			}
+			if (input.GRAVITY_DIRECTION == Direction::Up) {
+				vel.y -= GRAVITY * dt;
+			}
 		}
 
 		up.set((rectangle.x + (rectangle.w / 2) - 1), rectangle.y, 2, rectangle.h / 2);
@@ -40,8 +65,17 @@ void Player::update(Input& input, float dt) {
 		for (unsigned int i = 0; i < level->tiles.size(); i++) {
 			if (level->tiles[i]->getRectangle().distance(rectangle) < 100) {
 				if (level->tiles[i]->getRectangle().intersects(up)) {
-					rectangle.y = level->tiles[i]->getRectangle().y + rectangle.h;
-					vel.y = 0;
+					if (input.GRAVITY_DIRECTION == Direction::Down) {
+						rectangle.y = level->tiles[i]->getRectangle().y + rectangle.h;
+						vel.y = 0;
+					}
+					if (input.GRAVITY_DIRECTION == Direction::Up) {
+						rectangle.y = level->tiles[i]->getRectangle().y + rectangle.h;
+						vel.y = 0;
+						inMidAir = false;
+						jumping = false;
+						pressDown = false;
+					}
 				}
 				else if (level->tiles[i]->getRectangle().intersects(right)) {
 					rectangle.x = level->tiles[i]->getRectangle().x - rectangle.w;
@@ -52,11 +86,17 @@ void Player::update(Input& input, float dt) {
 					vel.x = 0;
 				}
 				else if (level->tiles[i]->getRectangle().intersects(down)) {
-					rectangle.y = level->tiles[i]->getRectangle().y - rectangle.h;
-					vel.y = 0;
-					inMidAir = false;
-					jumping = false;
-					pressDown = false;
+					if (input.GRAVITY_DIRECTION == Direction::Down) {
+						rectangle.y = level->tiles[i]->getRectangle().y - rectangle.h;
+						vel.y = 0;
+						inMidAir = false;
+						jumping = false;
+						pressDown = false;
+					}
+					if (input.GRAVITY_DIRECTION == Direction::Up) {
+						rectangle.y = level->tiles[i]->getRectangle().y - rectangle.h;
+						vel.y = 0;
+					}
 				}
 				else {
 					inMidAir = true;
@@ -77,6 +117,7 @@ void Player::update(Input& input, float dt) {
 		vel.x = 0;
 	}
 
+#if 0
 	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP) || input.isKeyPressed(SDL_SCANCODE_SPACE)) && !jumping) {
 		vel.y -= jumpspeed;
 		jumping = true;
@@ -85,6 +126,7 @@ void Player::update(Input& input, float dt) {
 		vel.y += (jumpspeed != 0) ? jumpspeed + 0.1f : 0;
 		pressDown = true;
 	}
+#endif
 
 	if (input.isKeyPressed(SDL_SCANCODE_ESCAPE)) {
 		rectangle.x = originalX;

@@ -23,6 +23,9 @@ private:
 
 	float addedTime = 0.f;
 
+	float intervalTimeForGravity = 0;
+	bool intervalBoolForGravity = 0;
+
 	bool col = false;
 	bool inMidAir = true;
 
