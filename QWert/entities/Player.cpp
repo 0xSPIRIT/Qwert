@@ -106,43 +106,39 @@ void Player::update(Input& input, float dt) {
 	}
 
 	if (input.isKeyPressed(SDL_SCANCODE_D) || input.isKeyPressed(SDL_SCANCODE_RIGHT)) {
-		rectangle.x += dt * spd;
-		vel.x = dt * spd;
-	}
-	else if (input.isKeyPressed(SDL_SCANCODE_A) || input.isKeyPressed(SDL_SCANCODE_LEFT)) {
-		rectangle.x -= dt * spd;
-		vel.x = dt * -spd;
+		if (vel.x < 350 * dt) {
+			vel.x += dt * 12;
+		}
 	}
 	else {
-		vel.x = 0;
+		if (vel.x > 0) {
+			vel.x -= dt * 3;
+		}
+	}
+	if (input.isKeyPressed(SDL_SCANCODE_A) || input.isKeyPressed(SDL_SCANCODE_LEFT)) {
+		if (vel.x > -350 * dt) {
+			vel.x -= dt * 12;
+		}
+	}
+	else {
+		if (vel.x < 0) {
+			vel.x += dt * 3;
+		}
 	}
 
-#if 0
-	if ((input.isKeyPressed(SDL_SCANCODE_W) || input.isKeyPressed(SDL_SCANCODE_UP) || input.isKeyPressed(SDL_SCANCODE_SPACE)) && !jumping) {
-		vel.y -= jumpspeed;
-		jumping = true;
-	}
-	if ((input.isKeyPressed(SDL_SCANCODE_S) || input.isKeyPressed(SDL_SCANCODE_DOWN)) && !pressDown) {
-		vel.y += (jumpspeed != 0) ? jumpspeed + 0.1f : 0;
-		pressDown = true;
-	}
-#endif
+	rectangle.x += vel.x;
 
 	if (input.isKeyPressed(SDL_SCANCODE_ESCAPE)) {
 		rectangle.x = originalX;
 		rectangle.y = originalY;
-	}
-
-	if (input.isKeyPressed(SDL_SCANCODE_LEFTBRACKET)) {
-		DEBUG = false;
-	}
-	if (input.isKeyPressed(SDL_SCANCODE_RIGHTBRACKET)) {
-		DEBUG = true;
+		vel.x = 0;
+		vel.y = 0;
 	}
 
 	// SETTING UP THE CAMERA'S POSITION
 
-	level->setCameraX(clamp(lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.01f), 0, level->getWidth() - WINDOW_WIDTH));
+	level->setCameraX(clamp(lerp(*level->getCameraX(), rectangle.x - (WINDOW_WIDTH / 2) + (rectangle.w / 2), 0.02f), 0, level->getWidth() - WINDOW_WIDTH / 2));
+	level->setCameraY(clamp(lerp(*level->getCameraY(), rectangle.y - (WINDOW_HEIGHT / 2) + (rectangle.h / 2), 0.02f), 0, level->getHeight() - WINDOW_HEIGHT / 2));
 }
 
 void Player::render(SDL_Renderer* renderer) {

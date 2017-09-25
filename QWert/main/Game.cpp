@@ -24,6 +24,13 @@ void Game::update(float dt) {
 	
 	input.setEvent(&event);
 
+	if (input.isKeyPressed(SDL_SCANCODE_LEFTBRACKET)) {
+		DEBUG = false;
+	}
+	if (input.isKeyPressed(SDL_SCANCODE_RIGHTBRACKET)) {
+		DEBUG = true;
+	}
+
 	level.update(input, dt);
 }
 

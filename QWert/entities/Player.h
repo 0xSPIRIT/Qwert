@@ -55,6 +55,7 @@ private:
 	float intervalTimeForGravity;
 	bool intervalBoolForGravity;
 
+
 	vec2 vel;
 
 	float originalX, originalY;
